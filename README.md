@@ -2,6 +2,7 @@
 
 - Projeto do módulo de Front-end da Trybe.
 - Projeto em grupo com 5 integrantes.
+- Aplicação mobile somente.
 - Foi desenvolvido uma aplicação que faz uso de uma api de comidas e bebidas. Nesse app, é possível favoritar, ver e filtrar receitas de comidas e bebidas.
 - Eu desenvolvi todo o css da aplicação, o footer, tela de detalhes de bebidas, tela do perfil do usuario, tela de login e a tela de receitas finalizadas.
 
