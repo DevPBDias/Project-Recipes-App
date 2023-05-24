@@ -17,9 +17,8 @@ function DetailsDrinks() {
   const history = useHistory();
   const { id } = useParams();
 
-  setIdUrl(id);
-
   useEffect(() => {
+    setIdUrl(id);
     const ingredientes = [];
     setingredientesData(ingredientes);
     Object.entries(detailDrink).forEach(([key, value]) => {
@@ -41,7 +40,7 @@ function DetailsDrinks() {
 
   useEffect(() => {
     const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (getLocal?.cocktails[id]) {
+    if (getLocal?.cocktails !== undefined && getLocal?.cocktails[id]) {
       setNameButton(false);
     }
   }, []);

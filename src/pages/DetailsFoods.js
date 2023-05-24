@@ -16,9 +16,8 @@ function DetailsFoods() {
   const history = useHistory();
   const { id } = useParams();
 
-  setIdUrl(id);
-
   useEffect(() => {
+    setIdUrl(id);
     const ingredientes = [];
     setingreditentesData(ingredientes);
     Object.entries(detailFood).forEach(([key, value]) => {
@@ -40,7 +39,7 @@ function DetailsFoods() {
 
   useEffect(() => {
     const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
-    if (getLocal?.meals[id]) {
+    if (getLocal?.meals !== undefined && getLocal?.meals[id]) {
       setNameButton(false);
     }
   }, []);

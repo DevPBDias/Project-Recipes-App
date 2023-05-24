@@ -15,8 +15,8 @@ function RecipeDrinks() {
   const [doneRecipeDrink, setDoneRecipeDrink] = useState([]);
   const { id } = useParams();
   const history = useHistory();
-  setIdUrl(id);
   useEffect(() => {
+    setIdUrl(id);
     const ingredientes = [];
     setingreditentesData(ingredientes);
     Object.entries(detailDrink).forEach(([key, value]) => {
@@ -43,8 +43,9 @@ function RecipeDrinks() {
       );
     } else {
       const getLocal = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      const getLocalS = JSON.parse(localStorage.getItem('inProgressRecipes')).cocktails;
       const cocktails = { ...getLocal.cocktails,
-        [id]: JSON.parse(localStorage.getItem('inProgressRecipes')).cocktails[id] || [] };
+        [id]: getLocalS !== undefined ? getLocalS[id] : [] };
       localStorage.setItem('inProgressRecipes', JSON
         .stringify({ ...getLocal, cocktails }));
     }
@@ -86,6 +87,9 @@ function RecipeDrinks() {
     }
   };
 
+  const filtroRepetItens = ingredientesData
+    .filter((ing, i) => ingredientesData.indexOf(ing) === i);
+
   const clickRedirect = () => {
     history.push('/done-recipes');
     const current = new Date();
@@ -103,7 +107,8 @@ function RecipeDrinks() {
       tags: [detailDrink.strTags],
     };
     localStorage.setItem('doneRecipes', JSON.stringify([...done, recipeDrinks]));
-    localStorage.removeItem('inProgressRecipes');
+    delete objLocalStorage.cocktails;
+    localStorage.setItem('inProgressRecipes', JSON.stringify(objLocalStorage));
     setDoneRecipeDrink([...doneRecipeDrink, recipeDrinks]);
   };
 
@@ -170,7 +175,7 @@ function RecipeDrinks() {
             className="buttonRecipe"
             type="button"
             data-testid="finish-recipe-btn"
-            disabled={ getLocalStorage?.length !== ingredientesData?.length }
+            disabled={ getLocalStorage?.length !== filtroRepetItens?.length }
             onClick={ clickRedirect }
           >
             Finish Recipe

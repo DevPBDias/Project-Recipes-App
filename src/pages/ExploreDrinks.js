@@ -7,6 +7,7 @@ import './pagesCss/Explore.css';
 
 function ExploreDrinks() {
   const history = useHistory();
+  console.log(history.location.pathname.split('/'));
 
   const clickExploreDrinksIgredient = () => {
     history.push('/explore/drinks/ingredients');

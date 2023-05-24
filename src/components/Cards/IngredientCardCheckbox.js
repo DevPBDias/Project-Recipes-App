@@ -4,6 +4,7 @@ import './IngredientCardCheckbox.css';
 
 function IngredientCardCheckbox({
   index, ingredients, measure, testId, checked, handleChange }) {
+  console.log('map', ingredients);
   return (
     <label
       htmlFor={ index }
